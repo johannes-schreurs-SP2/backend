@@ -25,7 +25,7 @@ public class UserController {
 
     @GetMapping("/search/name/{keyword}")
     public Iterable<User> getUserByName(@PathVariable String keyword) {
-        return userRepository.findUserByNameContaining(keyword);
+        return userRepository.findUsersByNameContaining(keyword);
     }
 
     @PostMapping("")
