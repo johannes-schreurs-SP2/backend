@@ -21,8 +21,8 @@ public class UserAnswer {
 
     }
 
-    public Long getUser() {
-        return user.getId();
+    public String getUser() {
+        return user.getEmail();
     }
 
     public void setUser(User user) {
