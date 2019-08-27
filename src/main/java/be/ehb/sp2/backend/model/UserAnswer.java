@@ -13,8 +13,16 @@ public class UserAnswer {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public User getUser() {
-        return user;
+    @ManyToOne
+    @JoinColumn(name = "answer_id")
+    private Answer answer;
+
+    public UserAnswer() {
+
+    }
+
+    public Long getUser() {
+        return user.getId();
     }
 
     public void setUser(User user) {
@@ -29,14 +37,7 @@ public class UserAnswer {
         this.answer = answer;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "answer_id")
-    private Answer answer;
 
-
-    public UserAnswer() {
-
-    }
 
     public Long getId() {
         return id;
