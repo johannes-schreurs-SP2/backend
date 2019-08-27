@@ -24,6 +24,11 @@ public class UserController {
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
+    @GetMapping("/surveys")
+    public Iterable<User> getUsersWhereSurveyIsNotNull() {
+        return userRepository.findUsersBySurveysIsNotNull();
+    }
+
     @GetMapping("/search/name/{keyword}")
     public Iterable<User> getUserByName(@PathVariable String keyword) {
         return userRepository.findUsersByNameContaining(keyword);
