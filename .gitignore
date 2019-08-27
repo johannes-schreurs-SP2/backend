@@ -5,7 +5,7 @@ target/
 !**/src/test/**
 
 #Sensitive data#
-src/main/resources/application.properties
+.properties
 
 ### STS ###
 .apt_generated
