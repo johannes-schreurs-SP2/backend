@@ -28,7 +28,7 @@ public class UserAnswer {
     public void setUser(User user) {
         this.user = user;
     }
-    
+
     public Long getAnswer() {
         return answer.getId();
     }

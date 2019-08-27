@@ -5,6 +5,7 @@ import be.ehb.sp2.backend.repository.UserAnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/useranswers")
 public class UserAnswerController {

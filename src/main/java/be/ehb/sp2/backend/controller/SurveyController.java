@@ -6,6 +6,7 @@ import be.ehb.sp2.backend.repository.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/surveys")
 public class SurveyController {
