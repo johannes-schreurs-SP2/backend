@@ -28,7 +28,7 @@ public class UserController {
         return userRepository.findUsersByNameContaining(keyword);
     }
 
-    @PostMapping("")
+    @PostMapping({"", "/"})
     public User createUser(@RequestBody User user){
         user.setId(null);
         return userRepository.save(user);
