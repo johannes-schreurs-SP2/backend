@@ -1,11 +1,11 @@
 package be.ehb.sp2.backend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -23,7 +23,20 @@ public class User {
 
     private Boolean isTeacher;
 
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private Set<Survey> surveys;
+
     public User() {}
+
+    public Set<Survey> getSurveys() {
+        return surveys;
+    }
+
+    public void setSurveys(Set<Survey> surveys) {
+        this.surveys = surveys;
+    }
 
     public Long getId() {
         return id;
