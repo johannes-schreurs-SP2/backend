@@ -28,15 +28,14 @@ public class UserAnswer {
     public void setUser(User user) {
         this.user = user;
     }
-
-    public Answer getAnswer() {
-        return answer;
+    
+    public Long getAnswer() {
+        return answer.getId();
     }
 
     public void setAnswer(Answer answer) {
         this.answer = answer;
     }
-
 
 
     public Long getId() {
