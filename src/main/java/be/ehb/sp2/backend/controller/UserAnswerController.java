@@ -18,9 +18,14 @@ public class UserAnswerController {
         return userAnswerRepository.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("user/{id}")
     public Iterable<UserAnswer> getAnswersFromUser(@PathVariable Long id){
         return userAnswerRepository.findAllByUserId(id);
+    }
+
+    @GetMapping("survey/{id}")
+    public Iterable<UserAnswer> getAnswersFromSurvey(@PathVariable Long id) {
+        return userAnswerRepository.findAllBySurveyId(id);
     }
 
     @PostMapping({"", "/"})

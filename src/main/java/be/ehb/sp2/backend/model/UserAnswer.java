@@ -14,8 +14,13 @@ public class UserAnswer {
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "survey_id")
+    private Survey survey;
+
+    @ManyToOne
     @JoinColumn(name = "answer_id")
     private Answer answer;
+
 
     public UserAnswer() {
 
@@ -27,6 +32,14 @@ public class UserAnswer {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Long getSurvey() {
+        return survey.getId();
+    }
+
+    public void setSurvey(Survey survey){
+        this.survey = survey;
     }
 
     public Long getAnswer() {
