@@ -24,6 +24,11 @@ public class QuestionController {
         return questionRepository.findById(id).orElseThrow(() -> new QuestionNotFoundException(id));
     }
 
+    @GetMapping("/search/survey/{id}")
+    public Iterable<Question> getAllQuestionsBySurveyId(@PathVariable Long id) {
+        return questionRepository.findAllBySurveyId(id);
+    }
+
     @PostMapping({"", "/"})
     public Question createQuestion(@RequestBody Question question) {
         question.setId(null);
