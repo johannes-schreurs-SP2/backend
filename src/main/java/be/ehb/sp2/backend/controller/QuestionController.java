@@ -3,7 +3,9 @@ package be.ehb.sp2.backend.controller;
 
 import be.ehb.sp2.backend.error.QuestionNotFoundException;
 import be.ehb.sp2.backend.model.Question;
+import be.ehb.sp2.backend.model.Survey;
 import be.ehb.sp2.backend.repository.QuestionRepository;
+import be.ehb.sp2.backend.repository.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,9 @@ public class QuestionController {
 
     @Autowired
     QuestionRepository questionRepository;
+
+    @Autowired
+    SurveyRepository surveyRepository;
 
     @GetMapping({"", ""})
     public Iterable<Question> getAllQuestions() {
@@ -30,10 +35,13 @@ public class QuestionController {
         return questionRepository.findAllBySurveyId(id);
     }
 
-    @PostMapping({"", "/"})
-    public Question createQuestion(@RequestBody Question question) {
-        question.setId(null);
-        return questionRepository.save(question);
+    @PostMapping("survey/{id}")
+    public Question createQuestion(@PathVariable Long id, @RequestBody Question question) {
+        Survey survey = surveyRepository.findById(id).get();
+        Question newQuestion = new Question();
+        newQuestion.setQuestion(question.getQuestion());
+        newQuestion.setSurvey(survey);
+        return questionRepository.save(newQuestion);
     }
 
     @PutMapping("")
