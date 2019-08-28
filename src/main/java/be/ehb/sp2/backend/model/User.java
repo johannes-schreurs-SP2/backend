@@ -28,6 +28,12 @@ public class User {
     @JoinColumn(name = "user_id")
     private Set<Survey> surveys;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private Set<UserAnswer> userAnswers;
+
+    public void setUserAnswers(Set<UserAnswer> userAnswers) { this.userAnswers = userAnswers;}
+
     public User() {}
 
     public Set<Survey> getSurveys() {

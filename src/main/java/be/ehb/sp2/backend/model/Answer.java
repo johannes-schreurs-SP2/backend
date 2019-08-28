@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 public class Answer {
@@ -18,6 +19,12 @@ public class Answer {
     @JsonBackReference
     @ManyToOne
     private Question question;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "answer_id")
+    private Set<UserAnswer> userAnswers;
+
+    public void setUserAnswers(Set<UserAnswer> userAnswers) { this.userAnswers = userAnswers;}
 
     public Answer() {
 

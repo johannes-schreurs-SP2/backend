@@ -10,15 +10,12 @@ public class UserAnswer {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "survey_id")
     private Survey survey;
 
     @ManyToOne
-    @JoinColumn(name = "answer_id")
     private Answer answer;
 
 
