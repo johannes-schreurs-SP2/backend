@@ -2,7 +2,9 @@ package be.ehb.sp2.backend.controller;
 
 import be.ehb.sp2.backend.error.SurveyNotFoundException;
 import be.ehb.sp2.backend.model.Survey;
+import be.ehb.sp2.backend.model.User;
 import be.ehb.sp2.backend.repository.SurveyRepository;
+import be.ehb.sp2.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,9 @@ public class SurveyController {
 
     @Autowired
     SurveyRepository surveyRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping({"", "/"})
     public Iterable<Survey> getAllSurveys(){
@@ -31,10 +36,14 @@ public class SurveyController {
         return surveyRepository.findSurveysByNameContaining(keyword);
     }
 
-    @PostMapping({"", "/"})
-    public Survey createSurvey(@RequestBody Survey survey) {
-        survey.setId(null);
-        return surveyRepository.save(survey);
+    @PostMapping("user/{id}")
+    public Survey createSurvey(@PathVariable Long id, @RequestBody Survey survey) {
+
+       User user = userRepository.findById(id).get();
+       Survey newSurvey = new Survey();
+       newSurvey.setName(survey.getName());
+       newSurvey.setUser(user);
+       return surveyRepository.save(newSurvey);
     }
 
     @PutMapping("")
