@@ -2,7 +2,9 @@ package be.ehb.sp2.backend.controller;
 
 import be.ehb.sp2.backend.error.AnswerNotFoundException;
 import be.ehb.sp2.backend.model.Answer;
+import be.ehb.sp2.backend.model.Question;
 import be.ehb.sp2.backend.repository.AnswerRepository;
+import be.ehb.sp2.backend.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,9 @@ public class AnswerController {
 
     @Autowired
     AnswerRepository answerRepository;
+
+    @Autowired
+    QuestionRepository questionRepository;
 
     @GetMapping({"", "/"})
     public Iterable<Answer> getAllAnswers() {
@@ -29,10 +34,13 @@ public class AnswerController {
         return answerRepository.findAnswersByQuestionId(id);
     }
 
-    @PostMapping({"", "/"})
-    public Answer createAnswer(@RequestBody Answer answer) {
-        answer.setId(null);
-        return answerRepository.save(answer);
+    @PostMapping("question/{id}")
+    public Answer createAnswer(@PathVariable Long id, @RequestBody Answer answer) {
+        Question question = questionRepository.findById(id).get();
+        Answer newAnswer = new Answer();
+        newAnswer.setAnswer(answer.getAnswer());
+        newAnswer.setQuestion(question);
+        return answerRepository.save(newAnswer);
     }
 
     @PutMapping({"", "/"})
