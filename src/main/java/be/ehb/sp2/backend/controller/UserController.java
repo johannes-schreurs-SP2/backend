@@ -1,6 +1,7 @@
 package be.ehb.sp2.backend.controller;
 
 import be.ehb.sp2.backend.error.UserNotFoundException;
+import be.ehb.sp2.backend.model.Survey;
 import be.ehb.sp2.backend.model.User;
 import be.ehb.sp2.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,9 @@ public class UserController {
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
-    @GetMapping("/surveys")
-    public Iterable<User> getUsersWhereSurveyIsNotNull() {
-        return userRepository.findUsersBySurveysIsNotNull();
+    @GetMapping("/{id}/surveys")
+    public Iterable<Survey> getUserSurveys(@PathVariable Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id)).getSurveys();
     }
 
     @GetMapping("/search/name/{keyword}")

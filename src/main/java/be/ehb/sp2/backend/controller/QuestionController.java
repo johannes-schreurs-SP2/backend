@@ -38,11 +38,10 @@ public class QuestionController {
 
     @PutMapping("")
     public Question updateQuestion(@RequestBody Question question) {
-        if(! questionRepository.existsById(question.getId())) {
-            throw new QuestionNotFoundException(question.getId());
-        } else {
-            return questionRepository.save(question);
-        }
+        Question questionToUpdate;
+        questionToUpdate = questionRepository.findById(question.getId()).get();
+        questionToUpdate.setQuestion(question.getQuestion());
+        return questionRepository.save(questionToUpdate);
     }
 
     @DeleteMapping("/{id}")

@@ -37,11 +37,10 @@ public class AnswerController {
 
     @PutMapping({"", "/"})
     public Answer updateAnswer(@RequestBody Answer answer) {
-        if(! answerRepository.existsById(answer.getId())) {
-            throw new AnswerNotFoundException(answer.getId());
-        } else {
-            return answerRepository.save(answer);
-        }
+        Answer answerToUpdate;
+        answerToUpdate = answerRepository.findById(answer.getId()).get();
+        answerToUpdate.setAnswer(answer.getAnswer());
+        return answerRepository.save(answerToUpdate);
     }
 
     @DeleteMapping("/{id}")

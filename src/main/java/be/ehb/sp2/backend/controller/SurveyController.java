@@ -6,6 +6,8 @@ import be.ehb.sp2.backend.repository.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/surveys")
@@ -37,11 +39,10 @@ public class SurveyController {
 
     @PutMapping("")
     public Survey updateSurvey(@RequestBody Survey survey) {
-        if(! surveyRepository.existsById(survey.getId())) {
-            throw new SurveyNotFoundException(survey.getId());
-        } else {
-            return surveyRepository.save(survey);
-        }
+        Survey surveyToUpdate;
+        surveyToUpdate = surveyRepository.findById(survey.getId()).get();
+        surveyToUpdate.setName(survey.getName());
+        return surveyRepository.save(survey);
     }
 
     @DeleteMapping("/{id}")
