@@ -9,4 +9,7 @@ public interface UserAnswerRepository extends CrudRepository<UserAnswer, Long> {
     public Iterable<UserAnswer> findAllByUserId(Long id);
 
     public Iterable<UserAnswer> findAllBySurveyId(Long id);
+
+    public int countUserAnswerByAnswer_Id(Long id);
+
 }

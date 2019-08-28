@@ -28,6 +28,11 @@ public class UserAnswerController {
         return userAnswerRepository.findAllBySurveyId(id);
     }
 
+    @GetMapping("/answer/{id}")
+    public int getCountFromAnswersById(@PathVariable Long id) {
+        return userAnswerRepository.countUserAnswerByAnswer_Id(id);
+    }
+
     @PostMapping({"", "/"})
     public void addAnswer(@RequestBody UserAnswer userAnswer) {
         userAnswer.setId(null);
