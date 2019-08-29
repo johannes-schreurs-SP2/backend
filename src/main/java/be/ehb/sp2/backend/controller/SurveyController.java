@@ -36,6 +36,11 @@ public class SurveyController {
         return surveyRepository.findSurveysByNameContaining(keyword);
     }
 
+    @GetMapping("/ordered")
+    public Iterable<Survey> getSurveysOrderedById(){
+        return surveyRepository.findAllByOrderByIdAsc();
+    }
+
     @PostMapping("user/{id}")
     public Survey createSurvey(@PathVariable Long id, @RequestBody Survey survey) {
 

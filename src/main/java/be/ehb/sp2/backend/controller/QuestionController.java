@@ -35,6 +35,11 @@ public class QuestionController {
         return questionRepository.findAllBySurveyId(id);
     }
 
+    @GetMapping("/ordered")
+    public Iterable<Question> getAllQuestionsOrdered() {
+        return questionRepository.findAllByOrderByIdAsc();
+    }
+
     @PostMapping("survey/{id}")
     public Question createQuestion(@PathVariable Long id, @RequestBody Question question) {
         Survey survey = surveyRepository.findById(id).get();

@@ -7,4 +7,6 @@ public interface SurveyRepository extends CrudRepository<Survey, Long> {
 
     public Iterable<Survey> findSurveysByNameContaining(String keyword);
 
+    public Iterable<Survey> findAllByOrderByIdAsc();
+
 }
