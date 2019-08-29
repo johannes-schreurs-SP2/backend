@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,7 +28,7 @@ public class User {
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
-    private Set<Survey> surveys;
+    private List<Survey> surveys = new ArrayList<Survey>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
@@ -36,11 +38,11 @@ public class User {
 
     public User() {}
 
-    public Set<Survey> getSurveys() {
+    public List<Survey> getSurveys() {
         return surveys;
     }
 
-    public void setSurveys(Set<Survey> surveys) {
+    public void setSurveys(List<Survey> surveys) {
         this.surveys = surveys;
     }
 

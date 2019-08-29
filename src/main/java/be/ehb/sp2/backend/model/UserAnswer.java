@@ -18,7 +18,6 @@ public class UserAnswer {
     @ManyToOne
     private Answer answer;
 
-
     public UserAnswer() {
 
     }
