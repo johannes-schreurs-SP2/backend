@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 public interface UserRepository extends CrudRepository<User, Long>{
 
     Iterable<User> findUsersByNameContaining(String keyword);
+    User findUserByEmailContaining(String keyword);
     Iterable<User> findUsersBySurveysIsNotNull();
 
 }
