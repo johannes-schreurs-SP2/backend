@@ -41,7 +41,12 @@ public class SurveyController {
         return surveyRepository.findAllByOrderByIdAsc();
     }
 
-    @PostMapping("user/{id}")
+    @GetMapping("/user/{id}")
+    public Iterable<Survey> getSurveysFromUser(@PathVariable Long id) {
+        return surveyRepository.findAllByUserId(id);
+    }
+
+    @PostMapping("/user/{id}")
     public Survey createSurvey(@PathVariable Long id, @RequestBody Survey survey) {
 
        User user = userRepository.findById(id).get();
