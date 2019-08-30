@@ -35,6 +35,11 @@ public class UserController {
         return userRepository.findUsersByNameContaining(keyword);
     }
 
+    @GetMapping("/search/email/{keyword}")
+    public User getUserByEmail(@PathVariable String keyword) {
+        return userRepository.findUserByEmailContaining(keyword);
+    }
+
     @PostMapping({"", "/"})
     public User createUser(@RequestBody User user){
         user.setId(null);

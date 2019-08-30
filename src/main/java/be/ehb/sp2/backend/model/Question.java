@@ -32,12 +32,22 @@ public class Question {
         return answers;
     }
 
+    public Boolean hasMultipleAnswer;
+
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
 
     public Question(){
 
+    }
+
+    public Boolean getHasMultipleAnswer() {
+        return hasMultipleAnswer;
+    }
+
+    public void setHasMultipleAnswer(Boolean b) {
+        this.hasMultipleAnswer = b;
     }
 
     public Long getId() {
