@@ -9,4 +9,6 @@ public interface SurveyRepository extends CrudRepository<Survey, Long> {
 
     public Iterable<Survey> findAllByOrderByIdAsc();
 
+    public Iterable<Survey> findAllByUserId(Long id);
+
 }
