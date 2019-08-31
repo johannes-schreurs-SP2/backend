@@ -53,7 +53,7 @@ public class QuestionController {
     public Question updateQuestion(@RequestBody Question question) {
         Question questionToUpdate;
         questionToUpdate = questionRepository.findById(question.getId()).get();
-        questionToUpdate.setQuestion(question.getQuestion());
+        questionToUpdate.setHasMultipleAnswer(question.getHasMultipleAnswer());
         return questionRepository.save(questionToUpdate);
     }
 
