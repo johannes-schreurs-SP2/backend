@@ -49,10 +49,14 @@ public class UserAnswerController {
         return userAnswerRepository.findAllByAnswerId(id);
     }
 
+    @GetMapping("count/answer/{id}")
+    public int getCountFromAnswer(@PathVariable Long id) {
+        return userAnswerRepository.countUserAnswersByAnswerIdAndIsAnsweredIsTrue(id);
+    }
+
 
     @PostMapping({"", "/"})
     public void addAnswer(@RequestBody UserAnswer userAnswer) {
-
 
         userAnswer.setId(null);
 
