@@ -42,6 +42,7 @@ public class LoginService {
 
     public void logout () {
         this.authToken = null;
+        this.userId = null;
     }
 
     public boolean isLoggedIn (String authToken) {

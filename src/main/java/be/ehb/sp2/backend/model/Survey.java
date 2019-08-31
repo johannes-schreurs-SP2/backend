@@ -31,6 +31,7 @@ public class Survey {
     private List<Question> questions = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference(value="userAnswerSurvey")
     @JoinColumn(name = "survey_id")
     private Set<UserAnswer> userAnswers;
 

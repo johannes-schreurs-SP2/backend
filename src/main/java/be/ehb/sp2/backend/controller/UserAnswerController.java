@@ -1,5 +1,8 @@
 package be.ehb.sp2.backend.controller;
 
+import be.ehb.sp2.backend.model.Answer;
+import be.ehb.sp2.backend.model.Survey;
+import be.ehb.sp2.backend.model.User;
 import be.ehb.sp2.backend.model.UserAnswer;
 import be.ehb.sp2.backend.repository.AnswerRepository;
 import be.ehb.sp2.backend.repository.SurveyRepository;
@@ -25,6 +28,7 @@ public class UserAnswerController {
     @Autowired
     AnswerRepository answerRepository;
 
+
     @GetMapping({"", "/"})
     public Iterable<UserAnswer> getAllUserAnswers() {
         return userAnswerRepository.findAll();
@@ -40,14 +44,18 @@ public class UserAnswerController {
         return userAnswerRepository.findAllBySurveyId(id);
     }
 
-    @GetMapping("/answer/{id}")
-    public int getCountFromAnswersById(@PathVariable Long id) {
-        return userAnswerRepository.countUserAnswerByAnswer_Id(id);
+    @GetMapping("answer/{id}")
+    public Iterable<UserAnswer> getAnswersFromAnswer(@PathVariable Long id) {
+        return userAnswerRepository.findAllByAnswerId(id);
     }
+
 
     @PostMapping({"", "/"})
     public void addAnswer(@RequestBody UserAnswer userAnswer) {
+
+
         userAnswer.setId(null);
+
         userAnswerRepository.save(userAnswer);
     }
 }

@@ -6,10 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UserAnswerRepository extends CrudRepository<UserAnswer, Long> {
 
-    public Iterable<UserAnswer> findAllByUserId(Long id);
-
-    public Iterable<UserAnswer> findAllBySurveyId(Long id);
-
-    public int countUserAnswerByAnswer_Id(Long id);
+    Iterable<UserAnswer> findAllByUserId(Long id);
+    Iterable<UserAnswer> findAllByAnswerId(Long id);
+    Iterable<UserAnswer> findAllBySurveyId(Long id);
 
 }

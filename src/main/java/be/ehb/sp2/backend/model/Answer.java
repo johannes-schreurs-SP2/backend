@@ -1,6 +1,7 @@
 package be.ehb.sp2.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,7 @@ public class Answer {
     private Question question;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference(value="userAnswerAnswer")
     @JoinColumn(name = "answer_id")
     private Set<UserAnswer> userAnswers;
 

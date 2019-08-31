@@ -30,6 +30,7 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<Survey> surveys = new ArrayList<Survey>();
 
+    @JsonManagedReference(value="userAnswer")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private Set<UserAnswer> userAnswers;
