@@ -32,7 +32,7 @@ public class Question {
         return answers;
     }
 
-    public Boolean hasMultipleAnswer;
+    public Boolean hasMultipleAnswer = false;
 
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
